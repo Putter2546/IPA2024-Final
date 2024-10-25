@@ -17,16 +17,16 @@ import ansible_final
 #######################################################################################
 # 2. Assign the Webex access token to the variable ACCESS_TOKEN using environment variables.
 
-# ACCESS_TOKEN = os.getenv("ACCESS_TOKEN")
-ACCESS_TOKEN="Bearer ZjM1YWRmY2YtMjIyZC00YjM5LWI0ZWMtODQxOWZjMGM4NGEwN2ZjZjdmZWUtOWVi_P0A1_bc884c7a-820b-497b-8b60-00b4d15ea95d"
+load_dotenv(dotenv_path='myvenv/.env')
+ACCESS_TOKEN = os.getenv("ACCESS_TOKEN")
 
 #######################################################################################
 # 3. Prepare parameters get the latest message for messages API.
 
 # Defines a variable that will hold the roomId
 roomIdToGetMessages = (
-     "Y2lzY29zcGFyazovL3VybjpURUFNOnVzLXdlc3QtMl9yL1JPT00vZGFkOTIzZjAtODg4Yi0xMWVmLTg1YTQtYTFkNTIyM2UxMjAz"
-    # "Y2lzY29zcGFyazovL3VzL1JPT00vNTFmNTJiMjAtNWQwYi0xMWVmLWE5YTAtNzlkNTQ0ZjRkNGZi"
+    # "Y2lzY29zcGFyazovL3VybjpURUFNOnVzLXdlc3QtMl9yL1JPT00vZGFkOTIzZjAtODg4Yi0xMWVmLTg1YTQtYTFkNTIyM2UxMjAz"
+    "Y2lzY29zcGFyazovL3VzL1JPT00vNTFmNTJiMjAtNWQwYi0xMWVmLWE5YTAtNzlkNTQ0ZjRkNGZi"
 )
 
 while True:
