@@ -93,7 +93,7 @@ def delete():
 
     if(resp.status_code >= 200 and resp.status_code <= 299):
         print("STATUS OK: {}".format(resp.status_code))
-        return "<!!!REPLACEME with proper message!!!>"
+        return "Interface loopback 65070165 is deleted successfully"
     else:
         print('Error. Status Code: {}'.format(resp.status_code))
 
@@ -147,7 +147,7 @@ def disable():
 
 
 def status():
-    api_url_status = "https://10.0.15.189/restconf/data/ietf-interfaces:interfaces/interface=Loopback65070165"
+    api_url_status = "https://10.0.15.183/restconf/data/ietf-interfaces:interfaces-state/interface=Loopback65070165"
 
     resp = requests.get(
         api_url_status, 

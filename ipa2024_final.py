@@ -16,8 +16,8 @@ import restconf_final
 #######################################################################################
 # 2. Assign the Webex access token to the variable ACCESS_TOKEN using environment variables.
 
-load_dotenv()
-ACCESS_TOKEN = os.getenv("ACCESS_TOKEN")
+# ACCESS_TOKEN = os.getenv("ACCESS_TOKEN")
+ACCESS_TOKEN = "Bearer ZjM1YWRmY2YtMjIyZC00YjM5LWI0ZWMtODQxOWZjMGM4NGEwN2ZjZjdmZWUtOWVi_P0A1_bc884c7a-820b-497b-8b60-00b4d15ea95d"
 
 #######################################################################################
 # 3. Prepare parameters get the latest message for messages API.
@@ -80,81 +80,82 @@ while True:
 
 # 5. Complete the logic for each command
 
-#         interface_exists = restconf_final.check_interface_exists()
-#         interface_interact = restconf_final.check_interface_can_interact()
+        interface_exists = restconf_final.check_interface_exists()
+        interface_interact = restconf_final.check_interface_can_interact()
 
-#         if command == "create":
-#             if interface_exists:
-#                 responseMessage = restconf_final.create()
-#             else:
-#                 responseMessage = "Cannot create: Interface loopback 65070165"    
-#         elif command == "delete":
-#             if interface_interact:
-#                 responseMessage = restconf_final.delete()
-#             else:
-#                 responseMessage = "Cannot delete: Interface loopback 65070165" 
-#         elif command == "enable":
-#             if interface_interact:
-#                 responseMessage = restconf_final.enable()
-#             else:
-#                 responseMessage = "Cannot enable: Interface loopback 65070165"
-#         elif command == "disable":
-#             if interface_interact:
-#                 responseMessage = restconf_final.disable()
-#             else:
-#                 responseMessage = "Cannot shutdown: Interface loopback 65070165" 
-#         elif command == "status":
-#             responseMessage = restconf_final.status()
-#         # elif command == "gigabit_status":
-#         #     <!!!REPLACEME with code for gigabit_status command!!!>
-#         # elif command == "showrun":
-#         #     <!!!REPLACEME with code for showrun command!!!>
-#         else:
-#             responseMessage = "Error: No command or unknown command"
+        if command == "create":
+            if interface_exists:
+                responseMessage = restconf_final.create()
+            else:
+                responseMessage = "Cannot create: Interface loopback 65070165"    
+        elif command == "delete":
+            if interface_interact:
+                responseMessage = restconf_final.delete()
+            else:
+                responseMessage = "Cannot delete: Interface loopback 65070165" 
+        elif command == "enable":
+            if interface_interact:
+                responseMessage = restconf_final.enable()
+            else:
+                responseMessage = "Cannot enable: Interface loopback 65070165"
+        elif command == "disable":
+            if interface_interact:
+                responseMessage = restconf_final.disable()
+            else:
+                responseMessage = "Cannot shutdown: Interface loopback 65070165" 
+        elif command == "status":
+            responseMessage = restconf_final.status()
+        # elif command == "gigabit_status":
+        #     <!!!REPLACEME with code for gigabit_status command!!!>
+        # elif command == "showrun":
+        #     <!!!REPLACEME with code for showrun command!!!>
+        else:
+            responseMessage = "Error: No command or unknown command"
         
-# # 6. Complete the code to post the message to the Webex Teams room.
+# 6. Complete the code to post the message to the Webex Teams room.
 
-#         # The Webex Teams POST JSON data for command showrun
-#         # - "roomId" is is ID of the selected room
-#         # - "text": is always "show running config"
-#         # - "files": is a tuple of filename, fileobject, and filetype.
+        # The Webex Teams POST JSON data for command showrun
+        # - "roomId" is is ID of the selected room
+        # - "text": is always "show running config"
+        # - "files": is a tuple of filename, fileobject, and filetype.
 
-#         # the Webex Teams HTTP headers, including the Authoriztion and Content-Type
+        # the Webex Teams HTTP headers, including the Authoriztion and Content-Type
         
-#         # Prepare postData and HTTPHeaders for command showrun
-#         # Need to attach file if responseMessage is 'ok'; 
-#         # Read Send a Message with Attachments Local File Attachments
-#         # https://developer.webex.com/docs/basics for more detail
+        # Prepare postData and HTTPHeaders for command showrun
+        # Need to attach file if responseMessage is 'ok'; 
+        # Read Send a Message with Attachments Local File Attachments
+        # https://developer.webex.com/docs/basics for more detail
 
-#         # if command == "showrun" and responseMessage == 'ok':
-#         #     filename = "<!!!REPLACEME with show run filename and path!!!>"
-#         #     fileobject = <!!!REPLACEME with open file!!!>
-#         #     filetype = "<!!!REPLACEME with Content-type of the file!!!>"
-#         #     postData = {
-#         #         "roomId": <!!!REPLACEME!!!>,
-#         #         "text": "show running config",
-#         #         "files": (<!!!REPLACEME!!!>, <!!!REPLACEME!!!>, <!!!REPLACEME!!!>),
-#         #     }
-#         #     postData = MultipartEncoder(<!!!REPLACEME!!!>)
-#         #     HTTPHeaders = {
-#         #     "Authorization": ACCESS_TOKEN,
-#         #     "Content-Type": <!!!REPLACEME with postData Content-Type!!!>,
-#         #     }
-#         # other commands only send text, or no attached file.
-#         else:
-#             postData = {"roomId": roomIdToGetMessages, "text": responseMessage}
-#             postData = json.dumps(postData)
+        if command == "showrun" and responseMessage == 'ok':
+            print("XX")
+        #     filename = "<!!!REPLACEME with show run filename and path!!!>"
+        #     fileobject = <!!!REPLACEME with open file!!!>
+        #     filetype = "<!!!REPLACEME with Content-type of the file!!!>"
+        #     postData = {
+        #         "roomId": <!!!REPLACEME!!!>,
+        #         "text": "show running config",
+        #         "files": (<!!!REPLACEME!!!>, <!!!REPLACEME!!!>, <!!!REPLACEME!!!>),
+        #     }
+        #     postData = MultipartEncoder(<!!!REPLACEME!!!>)
+        #     HTTPHeaders = {
+        #     "Authorization": ACCESS_TOKEN,
+        #     "Content-Type": <!!!REPLACEME with postData Content-Type!!!>,
+        #     }
+        # other commands only send text, or no attached file.
+        else:
+            postData = {"roomId": roomIdToGetMessages, "text": responseMessage}
+            postData = json.dumps(postData)
 
-#             # the Webex Teams HTTP headers, including the Authoriztion and Content-Type
-#             HTTPHeaders = {"Authorization": ACCESS_TOKEN, "Content-Type": "application/json"}   
+            # the Webex Teams HTTP headers, including the Authoriztion and Content-Type
+            HTTPHeaders = {"Authorization": ACCESS_TOKEN, "Content-Type": "application/json"}   
 
-#         # Post the call to the Webex Teams message API.
-#         r = requests.post(
-#             "https://webexapis.com/v1/messages",
-#             data=postData,
-#             headers=HTTPHeaders,
-#         )
-#         if not r.status_code == 200:
-#             raise Exception(
-#                 "Incorrect reply from Webex Teams API. Status code: {}".format(r.status_code)
-#             )
+        # Post the call to the Webex Teams message API.
+        r = requests.post(
+            "https://webexapis.com/v1/messages",
+            data=postData,
+            headers=HTTPHeaders,
+        )
+        if not r.status_code == 200:
+            raise Exception(
+                "Incorrect reply from Webex Teams API. Status code: {}".format(r.status_code)
+            )
